@@ -161,6 +161,13 @@ app.get("/about", function (req, res) {
   res.render("about");
 });
 
-app.listen(2000, function () {
-  console.log("Server started on port 2000");
+// configuring heroku server to listen in the correct port (process.env.PORT) as well as use the localhost 2000
+// note that the version of node used has been specifide for heroku in package.json file below license
+
+let port = process.env.PORT;
+if (port == null || port == "") {
+  port = 2000;
+}
+app.listen(port, function () {
+  console.log("Server started successfully!");
 });
